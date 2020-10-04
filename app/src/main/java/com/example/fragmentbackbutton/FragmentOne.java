@@ -2,6 +2,7 @@ package com.example.fragmentbackbutton;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class FragmentOne extends Fragment {
@@ -23,6 +25,8 @@ public class FragmentOne extends Fragment {
     private String mParam2;
 
     private FragmentTwo fragmentTwo;
+
+    private Button button;
 
     public FragmentOne() {
 
@@ -53,7 +57,7 @@ public class FragmentOne extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_one, container, false);
 
 
-        Button button = view.findViewById(R.id.idClick2);
+       button = view.findViewById(R.id.idClick2);
 
         fragmentTwo = new FragmentTwo();
 
@@ -62,6 +66,8 @@ public class FragmentOne extends Fragment {
             public void onClick(View v) {
 
                 setFrament(fragmentTwo);
+
+                Toast.makeText(getActivity(), "ff", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -73,7 +79,7 @@ public class FragmentOne extends Fragment {
 
     private  void setFrament (Fragment frament){
 
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = ((AppCompatActivity) getActivity()).getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container,frament);
         fragmentTransaction.commit();
 
