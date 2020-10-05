@@ -7,9 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,7 +69,7 @@ public class FragmentTwo extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_two, container, false);
-
+        setHasOptionsMenu(true);
 
         mToolbar = view.findViewById(R.id.id_documantary_toolbar);
         TextView mTitle = mToolbar.findViewById(R.id.toolbar_title);
@@ -79,4 +82,18 @@ public class FragmentTwo extends Fragment {
 
         return view;
     }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+            Toast.makeText(getActivity(), "Backarrow pressed", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        return false;
+    }
+
 }
